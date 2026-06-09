@@ -1,6 +1,17 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import heroImg from './assets/hero.png'
 import './App.css'
+
+const BASE = 'https://miamiorganizers.com/wp-content/uploads'
+const IMGS = {
+  logo:      `${BASE}/2023/08/logo-Mo.jpg`,
+  hero:      `${BASE}/2023/07/IMG_09051-768x1024.jpg`,
+  cardA:     `${BASE}/2023/07/Proyect-1-1.png`,
+  cardB:     `${BASE}/2023/07/Proyect-2-1.png`,
+  cardC:     `${BASE}/2023/07/Proyect-3-1.png`,
+  concierge: `${BASE}/2023/07/IMG_14421-768x1024.jpg`,
+  portrait:  `${BASE}/elementor/thumbs/IMG_3105-scaled-ppfs8a1y2ar9sxj9p7oj32o2eufryqwovnjsom3vk8.jpg`,
+  about:     `${BASE}/2023/04/92E1DA0C-5D8A-4E2E-B05E-D45F0639A6CC.jpg`,
+}
 
 /* ── data ── */
 const RATE = 90
@@ -70,6 +81,7 @@ function Nav() {
     <>
       <header className={`nav${stuck ? ' is-stuck' : ''}`}>
         <a href="#top" className="nav__brand" aria-label="Miami Organizers home">
+          <img src={IMGS.logo} alt="" className="nav__mark" />
           <span className="nav__word">Miami&nbsp;Organizers</span>
         </a>
         <nav className="nav__links" aria-label="Primary">
@@ -219,7 +231,7 @@ function App() {
         {/* HERO */}
         <section className="hero">
           <div className="hero__media">
-            <img src={heroImg} alt="Sherezade Vacas in a styled, organized Miami kitchen" fetchpriority="high" />
+            <img src={IMGS.hero} alt="Organized Miami kitchen" fetchpriority="high" />
           </div>
           <div className="hero__panel">
             <p className="eyebrow">Miami&nbsp;·&nbsp;Dade County</p>
@@ -259,7 +271,7 @@ function App() {
           </div>
           <div className="cards">
             <article className="card">
-              <div className="card__media"></div>
+              <div className="card__media"><img src={IMGS.cardA} alt="Organized kitchen and pantry" /></div>
               <div className="card__body">
                 <span className="card__no">A</span>
                 <h3>Kitchens &amp; Pantries</h3>
@@ -267,7 +279,7 @@ function App() {
               </div>
             </article>
             <article className="card">
-              <div className="card__media"></div>
+              <div className="card__media"><img src={IMGS.cardB} alt="Styled living and dining area" /></div>
               <div className="card__body">
                 <span className="card__no">B</span>
                 <h3>Whole-Home Editing</h3>
@@ -275,7 +287,7 @@ function App() {
               </div>
             </article>
             <article className="card">
-              <div className="card__media"></div>
+              <div className="card__media"><img src={IMGS.cardC} alt="Organized room ready for move-in" /></div>
               <div className="card__body">
                 <span className="card__no">C</span>
                 <h3>Moves &amp; Unpacks</h3>
@@ -287,7 +299,9 @@ function App() {
 
         {/* CONCIERGE */}
         <section className="concierge" id="concierge">
-          <div className="concierge__media"></div>
+          <div className="concierge__media">
+            <img src={IMGS.concierge} alt="Refined organized kitchen detail" />
+          </div>
           <div className="concierge__copy">
             <p className="eyebrow eyebrow--light">02 — Kitchen Concierge</p>
             <h2 className="concierge__title">The pantry,<br /><em>quietly kept.</em></h2>
@@ -340,7 +354,9 @@ function App() {
 
         {/* QUOTE BAND */}
         <section className="quote">
-          <div className="quote__media"></div>
+          <div className="quote__media">
+            <img src={IMGS.portrait} alt="Portrait of Sherezade Vacas" />
+          </div>
           <blockquote className="quote__text">
             <p>"Organizing isn't about owning less. It's about making room for the life you actually want."</p>
             <cite>Sherezade Vacas — Founder</cite>
@@ -377,7 +393,9 @@ function App() {
 
         {/* ABOUT */}
         <section className="section about reveal" id="about">
-          <div className="about__media"></div>
+          <div className="about__media">
+            <img src={IMGS.about} alt="Sherezade Vacas at home in Miami" />
+          </div>
           <div className="about__copy">
             <p className="eyebrow">06 — The founder</p>
             <h2 className="section__title">Sherezade Vacas</h2>
@@ -432,7 +450,7 @@ function App() {
       {/* FOOTER */}
       <footer className="footer">
         <div className="footer__top">
-          <span className="footer__wordtext">Miami Organizers</span>
+          <img src={IMGS.logo} alt="Miami Organizers" className="footer__logo" />
         </div>
         <div className="footer__cols">
           <div className="footer__col">
