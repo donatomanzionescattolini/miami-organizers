@@ -1,32 +1,37 @@
 import { createContext, useContext } from 'react'
 
 /* ============================================================
-   MEDIA — served from the existing WordPress host
+   MEDIA — local assets (per page folder under src/assets)
    ============================================================ */
-const BASE = 'https://miamiorganizers.com/wp-content/uploads'
+import logo from './assets/Miami Organizers — Home & Office Organizing in South Florida/logo-Mo.jpg'
+import hero from './assets/Miami Organizers — Home & Office Organizing in South Florida/92E1DA0C-5D8A-4E2E-B05E-D45F0639A6CC.jpg'
+import cardHome from './assets/Services — Miami Organizers/IMG_09051-768x1024.jpg'
+import cardOffice from './assets/Services — Miami Organizers/IMG_78821-768x1024.jpg'
+import cardMove from './assets/Services — Miami Organizers/IMG_14421-768x1024.jpg'
+import concierge from './assets/Services — Miami Organizers/WhatsApp-Image-2023-07-25-at-10-12-08-AM-5.jpeg'
+import portrait from './assets/About — Miami Organizers/IMG_3105-scaled-ppfs8a1y2ar9sxj9p7oj32o2eufryqwovnjsom3vk8.jpg'
+import gallery1 from './assets/Our Work — Miami Organizers/Proyect-1-1.png'
+import gallery2 from './assets/Our Work — Miami Organizers/WhatsApp-Image-2023-07-25-at-10-12-08-AM-4.jpeg'
+import gallery3 from './assets/Our Work — Miami Organizers/WhatsApp-Image-2023-07-25-at-10-12-08-AM-3.jpeg'
+import gallery4 from './assets/Our Work — Miami Organizers/WhatsApp-Image-2023-07-25-at-10-12-08-AM-2.jpeg'
+import gallery5 from './assets/Our Work — Miami Organizers/WhatsApp-Image-2023-07-25-at-10-12-08-AM-1.jpeg'
+import gallery6 from './assets/Our Work — Miami Organizers/WhatsApp-Image-2023-07-25-at-10-12-08-AM.jpeg'
+import gallery7 from './assets/Our Work — Miami Organizers/IMG_78851.jpg'
+
+const BOOK_URL = 'https://miamiorganizers.com/wp-content/uploads/2024/09/Organizing-for-a-better-lifestyle-by-Sherezade-Vacas-642x1024.png'
 
 export const IMG = {
-  logo:      `${BASE}/2023/08/logo-Mo.jpg`,
-  hero:      `${BASE}/2023/04/92E1DA0C-5D8A-4E2E-B05E-D45F0639A6CC.jpg`,
-  // service cards — portrait photos that fit the 4:5 card frame
-  cardHome:  `${BASE}/2023/07/IMG_09051-768x1024.jpg`,
-  cardOffice:`${BASE}/2023/07/IMG_78821-768x1024.jpg`,
-  cardMove:  `${BASE}/2023/07/IMG_14421-768x1024.jpg`,
-  concierge: `${BASE}/2023/07/WhatsApp-Image-2023-07-25-at-10.12.08-AM-5.jpeg`,
-  portrait:  `${BASE}/elementor/thumbs/IMG_3105-scaled-ppfs8a1y2ar9sxj9p7oj32o2eufryqwovnjsom3vk8.jpg`,
-  book:      `${BASE}/2024/09/Organizing-for-a-better-lifestyle-by-Sherezade-Vacas-642x1024.png`,
+  logo,
+  hero,
+  cardHome,
+  cardOffice,
+  cardMove,
+  concierge,
+  portrait,
+  book: BOOK_URL,
 }
 
-/* gallery — Proyect-2 & Proyect-3 removed per request */
-export const GALLERY = [
-  `${BASE}/2023/07/Proyect-1-1.png`,
-  `${BASE}/2023/07/WhatsApp-Image-2023-07-25-at-10.12.08-AM-4.jpeg`,
-  `${BASE}/2023/07/WhatsApp-Image-2023-07-25-at-10.12.08-AM-3.jpeg`,
-  `${BASE}/2023/07/WhatsApp-Image-2023-07-25-at-10.12.08-AM-2.jpeg`,
-  `${BASE}/2023/07/WhatsApp-Image-2023-07-25-at-10.12.08-AM-1.jpeg`,
-  `${BASE}/2023/07/WhatsApp-Image-2023-07-25-at-10.12.08-AM.jpeg`,
-  `${BASE}/2023/07/IMG_78851.jpg`,
-]
+export const GALLERY = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7]
 
 /* ============================================================
    LINKS
