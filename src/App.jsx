@@ -5,7 +5,7 @@ const BASE = 'https://miamiorganizers.com/wp-content/uploads'
 const IMGS = {
   logo:      `${BASE}/2023/08/logo-Mo.jpg`,
   hero:      `${BASE}/2023/07/IMG_09051-768x1024.jpg`,
-  cardA:     `${BASE}/2023/07/Proyect-1-1.png`,
+  cardA:     `public/kitchen.png`,
   cardB:     `${BASE}/2023/07/Proyect-2-1.png`,
   cardC:     `${BASE}/2023/07/Proyect-3-1.png`,
   concierge: `${BASE}/2023/07/IMG_14421-768x1024.jpg`,
