@@ -4,6 +4,16 @@ import {
   IMG, GALLERY, LINKS, ROUTES, lines,
   useLang, useT, IgIcon, FbIcon, PhoneIcon, WhatsAppIcon,
 } from './content.jsx'
+import { useReveal } from './hooks.js'
+
+function Reveal({ as: Tag = 'section', className = '', children, ...rest }) {
+  const [ref, visible] = useReveal()
+  return (
+    <Tag ref={ref} className={`${className} reveal${visible ? ' in' : ''}`.trim()} {...rest}>
+      {children}
+    </Tag>
+  )
+}
 
 /* ============================================================
    NAV
@@ -94,18 +104,37 @@ export function Hero() {
         <img src={IMG.hero} alt="Organized Miami home" fetchPriority="high" />
         <div className="hero__scrim" />
       </div>
-      <div className="hero__panel">
-        <p className="eyebrow">{t.hero.eyebrow}</p>
-        <h1 className="hero__title">{t.hero.titleA}<br /><span className="ink-block">{t.hero.titleB}</span></h1>
+      <div className="hero__content">
+        <p className="eyebrow eyebrow--light">{t.hero.eyebrow}</p>
+        <h1 className="hero__title">
+          {t.hero.titleA}<br />
+          <span className="ink-block">{t.hero.titleB}</span>
+        </h1>
         <p className="hero__lede">{t.hero.lede}</p>
         <div className="hero__actions">
           <Link to={ROUTES.contact} className="btn btn--solid">{t.hero.ctaBook}</Link>
           <Link to={ROUTES.services} className="btn btn--ghost">{t.hero.ctaServices}</Link>
         </div>
-        <div className="hero__social">
-          <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><IgIcon /></a>
-          <a href={LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FbIcon /></a>
-          <a href={`tel:${LINKS.phone}`} className="hero__phone">{LINKS.phoneDisplay}</a>
+        <div className="hero__meta">
+          <div className="hero__stats">
+            <div className="hero__stat">
+              <span className="hero__stat-val">4.7</span>
+              <span className="hero__stat-lbl">{t.hero.statRating}</span>
+            </div>
+            <div className="hero__stat">
+              <span className="hero__stat-val">39</span>
+              <span className="hero__stat-lbl">{t.hero.statReviews}</span>
+            </div>
+            <div className="hero__stat">
+              <span className="hero__stat-val">$90</span>
+              <span className="hero__stat-lbl">{t.hero.statRate}</span>
+            </div>
+          </div>
+          <div className="hero__social">
+            <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><IgIcon /></a>
+            <a href={LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FbIcon /></a>
+            <a href={`tel:${LINKS.phone}`} className="hero__phone">{LINKS.phoneDisplay}</a>
+          </div>
         </div>
       </div>
     </section>
@@ -114,9 +143,16 @@ export function Hero() {
 
 export function Strip() {
   const t = useT()
+  const line = (
+    <p className="strip__line">
+      {t.strip.line} — <span className="strip__muted">{t.strip.muted}</span>
+    </p>
+  )
   return (
-    <section className="strip">
-      <p className="strip__line">{t.strip.line} — <span className="strip__muted">{t.strip.muted}</span></p>
+    <section className="strip" aria-label="Tagline">
+      <div className="strip__track">
+        {line}{line}{line}{line}
+      </div>
     </section>
   )
 }
@@ -128,7 +164,7 @@ export function Services({ preview = false }) {
   const t = useT()
   const imgs = [IMG.cardHome, IMG.cardOffice, IMG.cardMove]
   return (
-    <section className="section services reveal in" id="services">
+    <Reveal className="section services" id="services">
       <div className="section__head">
         <p className="eyebrow">{t.services.eyebrow}</p>
         <h2 className="section__title">{lines(t.services.title)}</h2>
@@ -139,7 +175,7 @@ export function Services({ preview = false }) {
           <article className="card" key={t.services.cards[i].t}>
             <div className="card__media"><img src={src} alt={t.services.cards[i].t} loading="lazy" /></div>
             <div className="card__body">
-              <span className="card__no">{String.fromCodePoint(65 + i)}</span>
+              <span className="card__no">{String(i + 1).padStart(2, '0')}</span>
               <h3>{t.services.cards[i].t}</h3>
               <p>{t.services.cards[i].d}</p>
             </div>
@@ -154,7 +190,7 @@ export function Services({ preview = false }) {
           <ul className="specialties__list">{t.services.specialties.map((s) => <li key={s}>{s}</li>)}</ul>
         </div>
       )}
-    </section>
+    </Reveal>
   )
 }
 
@@ -164,7 +200,7 @@ export function Services({ preview = false }) {
 export function Concierge() {
   const t = useT()
   return (
-    <section className="concierge" id="concierge">
+    <Reveal className="concierge" id="concierge">
       <div className="concierge__media"><img src={IMG.concierge} alt="Organized space detail" loading="lazy" /></div>
       <div className="concierge__copy">
         <p className="eyebrow eyebrow--light">{t.concierge.eyebrow}</p>
@@ -173,7 +209,7 @@ export function Concierge() {
         <ul className="concierge__list">{t.concierge.list.map((l) => <li key={l}>{l}</li>)}</ul>
         <a href={LINKS.form} className="btn btn--light" target="_blank" rel="noopener noreferrer">{t.concierge.cta}</a>
       </div>
-    </section>
+    </Reveal>
   )
 }
 
@@ -183,8 +219,25 @@ export function Concierge() {
 export function Gallery({ preview = false }) {
   const t = useT()
   const items = preview ? GALLERY.slice(0, 6) : GALLERY
+  const [lightbox, setLightbox] = useState(null)
+
+  useEffect(() => {
+    if (lightbox === null) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') setLightbox(null)
+      if (e.key === 'ArrowRight') setLightbox((i) => (i + 1) % items.length)
+      if (e.key === 'ArrowLeft') setLightbox((i) => ((i - 1) + items.length) % items.length)
+    }
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [lightbox, items.length])
+
   return (
-    <section className="section gallery reveal in" id="gallery">
+    <Reveal className="section gallery" id="gallery">
       <div className="section__head section__head--center">
         <p className="eyebrow">{t.gallery.eyebrow}</p>
         <h2 className="section__title">{lines(t.gallery.title)}</h2>
@@ -192,13 +245,46 @@ export function Gallery({ preview = false }) {
       </div>
       <div className="gallery__grid">
         {items.map((src, i) => (
-          <a className="gallery__item" key={src} href={src} target="_blank" rel="noopener noreferrer">
+          <button
+            type="button"
+            className="gallery__item"
+            key={src}
+            onClick={() => setLightbox(i)}
+            aria-label={`View project ${i + 1}`}
+          >
             <img src={src} alt={`Miami Organizers project ${i + 1}`} loading="lazy" />
-          </a>
+          </button>
         ))}
       </div>
-      {preview && <div className="section__more"><Link to={ROUTES.work} className="btn btn--ghost">{t.gallery.more}</Link></div>}
-    </section>
+      {preview && (
+        <div className="section__more">
+          <Link to={ROUTES.work} className="btn btn--ghost">{t.gallery.more}</Link>
+        </div>
+      )}
+      {lightbox !== null && (
+        <div className="lightbox" role="dialog" aria-modal="true" onClick={() => setLightbox(null)}>
+          <button type="button" className="lightbox__close" aria-label="Close" onClick={() => setLightbox(null)}>×</button>
+          <button
+            type="button"
+            className="lightbox__nav lightbox__nav--prev"
+            aria-label="Previous"
+            onClick={(e) => { e.stopPropagation(); setLightbox((lightbox - 1 + items.length) % items.length) }}
+          >←</button>
+          <img
+            className="lightbox__img"
+            src={items[lightbox]}
+            alt={`Miami Organizers project ${lightbox + 1}`}
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button
+            type="button"
+            className="lightbox__nav lightbox__nav--next"
+            aria-label="Next"
+            onClick={(e) => { e.stopPropagation(); setLightbox((lightbox + 1) % items.length) }}
+          >→</button>
+        </div>
+      )}
+    </Reveal>
   )
 }
 
@@ -208,7 +294,7 @@ export function Gallery({ preview = false }) {
 export function Video() {
   const t = useT()
   return (
-    <section className="video reveal in" id="video">
+    <Reveal className="video" id="video">
       <div className="video__inner">
         <p className="eyebrow eyebrow--light">{t.video.eyebrow}</p>
         <h2 className="video__title">{t.video.title}</h2>
@@ -223,7 +309,7 @@ export function Video() {
           />
         </div>
       </div>
-    </section>
+    </Reveal>
   )
 }
 
@@ -233,7 +319,7 @@ export function Video() {
 export function Mission() {
   const t = useT()
   return (
-    <section className="section mission reveal in" id="mission">
+    <Reveal className="section mission" id="mission">
       <div className="section__head section__head--center">
         <p className="eyebrow">{t.mission.eyebrow}</p>
         <h2 className="section__title">{lines(t.mission.title)}</h2>
@@ -247,20 +333,20 @@ export function Mission() {
           </div>
         ))}
       </div>
-    </section>
+    </Reveal>
   )
 }
 
 export function QuoteBand() {
   const t = useT()
   return (
-    <section className="quote">
+    <Reveal className="quote">
       <div className="quote__media"><img src={IMG.portrait} alt="Sherezade Vacas" loading="lazy" /></div>
       <blockquote className="quote__text">
         <p>{t.quote.text}</p>
         <cite>{t.quote.cite}</cite>
       </blockquote>
-    </section>
+    </Reveal>
   )
 }
 
@@ -270,7 +356,7 @@ export function QuoteBand() {
 export function Packages() {
   const t = useT()
   return (
-    <section className="section packages reveal in" id="packages">
+    <Reveal className="section packages" id="packages">
       <div className="section__head section__head--center">
         <p className="eyebrow">{t.packages.eyebrow}</p>
         <h2 className="section__title">{lines(t.packages.title)}</h2>
@@ -291,7 +377,7 @@ export function Packages() {
         })}
       </div>
       <p className="packages__note">{t.packages.note}</p>
-    </section>
+    </Reveal>
   )
 }
 
@@ -316,7 +402,7 @@ export function Reviews() {
   const go = (i) => { setIdx(((i % n) + n) % n); auto() }
 
   return (
-    <section className="section reviews reveal in" id="reviews">
+    <Reveal className="section reviews" id="reviews">
       <div className="section__head section__head--center">
         <p className="eyebrow">{t.reviews.eyebrow}</p>
         <h2 className="section__title">{lines(t.reviews.title)}</h2>
@@ -342,7 +428,7 @@ export function Reviews() {
           <button key={r.n + r.s} className={`rev__dot${i === idx ? ' is-on' : ''}`} onClick={() => go(i)} aria-label={`Review ${i + 1}`} />
         ))}
       </div>
-    </section>
+    </Reveal>
   )
 }
 
@@ -352,7 +438,7 @@ export function Reviews() {
 export function Products() {
   const t = useT()
   return (
-    <section className="section products reveal in" id="products">
+    <Reveal className="section products" id="products">
       <div className="section__head section__head--center">
         <p className="eyebrow">{t.products.eyebrow}</p>
         <h2 className="section__title">{lines(t.products.title)}</h2>
@@ -377,7 +463,7 @@ export function Products() {
           </div>
         ))}
       </div>
-    </section>
+    </Reveal>
   )
 }
 
@@ -387,7 +473,7 @@ export function Products() {
 export function Press() {
   const t = useT()
   return (
-    <section className="media reveal in" id="press">
+    <Reveal className="media" id="press">
       <div className="media__inner">
         <p className="eyebrow">{t.press.eyebrow}</p>
         <div className="media__kicker">{t.press.kicker}</div>
@@ -395,7 +481,7 @@ export function Press() {
         <p className="media__excerpt">{t.press.excerpt}</p>
         <a href={LINKS.press} className="textlink" target="_blank" rel="noopener noreferrer">{t.press.cta}</a>
       </div>
-    </section>
+    </Reveal>
   )
 }
 
@@ -405,7 +491,7 @@ export function Press() {
 export function About() {
   const t = useT()
   return (
-    <section className="section about reveal in" id="about">
+    <Reveal className="section about" id="about">
       <div className="about__media"><img src={IMG.portrait} alt="Sherezade Vacas, founder" loading="lazy" /></div>
       <div className="about__copy">
         <p className="eyebrow">{t.about.eyebrow}</p>
@@ -414,7 +500,7 @@ export function About() {
         <p>{t.about.p2}</p>
         <Link to={ROUTES.guides} className="textlink">{t.about.cta}</Link>
       </div>
-    </section>
+    </Reveal>
   )
 }
 
@@ -424,7 +510,7 @@ export function About() {
 export function Contact() {
   const t = useT()
   return (
-    <section className="book" id="contact">
+    <Reveal className="book" id="contact">
       <div className="book__inner">
         <p className="eyebrow eyebrow--light">{t.contact.eyebrow}</p>
         <h2 className="book__title">{lines(t.contact.title)}</h2>
@@ -447,7 +533,7 @@ export function Contact() {
           <a href={LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FbIcon /></a>
         </div>
       </div>
-    </section>
+    </Reveal>
   )
 }
 
@@ -455,13 +541,13 @@ export function Contact() {
 export function CtaBand() {
   const t = useT()
   return (
-    <section className="ctaband">
+    <Reveal className="ctaband">
       <div className="ctaband__inner">
         <h2 className="ctaband__title">{t.cta.title}</h2>
         <p className="ctaband__text">{t.cta.text}</p>
         <Link to={ROUTES.contact} className="btn btn--solid btn--lg">{t.cta.btn}</Link>
       </div>
-    </section>
+    </Reveal>
   )
 }
 

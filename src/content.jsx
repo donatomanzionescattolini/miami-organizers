@@ -70,6 +70,9 @@ export const T = {
       lede: "Whether you're drowning in piles of stuff or just need a little extra help to make your space shine — Miami Organizers is here to handle the chaos and give you your time, calm, and clarity back.",
       ctaBook: 'Request your free quote',
       ctaServices: 'See what we do',
+      statRating: '4.7 rating',
+      statReviews: '39 reviews',
+      statRate: 'per hour',
     },
     strip: { line: 'Declutter · Design · Systemize · Maintain', muted: 'so the everyday feels effortless.' },
     services: {
@@ -202,6 +205,9 @@ export const T = {
       lede: 'Ya sea que estés ahogado entre cosas o solo necesites una mano extra para que tu espacio brille — Miami Organizers está aquí para encargarse del caos y devolverte tu tiempo, tu calma y tu claridad.',
       ctaBook: 'Pide tu cotización gratis',
       ctaServices: 'Ve lo que hacemos',
+      statRating: '4.7 de calificación',
+      statReviews: '39 reseñas',
+      statRate: 'por hora',
     },
     strip: { line: 'Despejar · Diseñar · Sistematizar · Mantener', muted: 'para que lo cotidiano se sienta sin esfuerzo.' },
     services: {
