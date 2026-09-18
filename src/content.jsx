@@ -39,9 +39,9 @@ export const GALLERY = [gallery1, gallery2, gallery3, gallery4, gallery5, galler
 export const LINKS = {
   instagram: 'https://www.instagram.com/miamiorganizers/',
   facebook:  'https://www.facebook.com/Miamiorganizers',
-  phone:     '+17864388088',
-  phoneDisplay: '+1 786 438 8088',
-  whatsapp:  'https://wa.me/17864388088',
+  phone:     '+17868827197',
+  phoneDisplay: '+1 (786) 882-7197',
+  whatsapp:  'https://wa.me/17868827197',
   youtubeId: 'AZzRUiomccs',
   product:   'https://miamiorganizers.thinkific.com/products/digital_downloads/Organizing-for-a-better-lifestyle',
   calendly:  'https://calendly.com/sherevacas/30min?month=2026-06',
