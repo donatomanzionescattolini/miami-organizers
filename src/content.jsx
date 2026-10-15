@@ -4,12 +4,6 @@ import { createContext, useContext } from 'react'
    MEDIA — local assets (per page folder under src/assets)
    ============================================================ */
 import logo from './assets/Miami Organizers — Home & Office Organizing in South Florida/logo-Mo.jpg'
-import hero from './assets/Miami Organizers — Home & Office Organizing in South Florida/92E1DA0C-5D8A-4E2E-B05E-D45F0639A6CC.jpg'
-import cardHome from './assets/Services — Miami Organizers/IMG_09051-768x1024.jpg'
-import cardOffice from './assets/Services — Miami Organizers/IMG_78821-768x1024.jpg'
-import cardMove from './assets/Services — Miami Organizers/IMG_14421-768x1024.jpg'
-import concierge from './assets/Services — Miami Organizers/WhatsApp-Image-2023-07-25-at-10-12-08-AM-5.jpeg'
-import portrait from './assets/About — Miami Organizers/IMG_3105-scaled-ppfs8a1y2ar9sxj9p7oj32o2eufryqwovnjsom3vk8.jpg'
 import gallery1 from './assets/Our Work — Miami Organizers/Proyect-1-1.png'
 import gallery2 from './assets/Our Work — Miami Organizers/WhatsApp-Image-2023-07-25-at-10-12-08-AM-4.jpeg'
 import gallery3 from './assets/Our Work — Miami Organizers/WhatsApp-Image-2023-07-25-at-10-12-08-AM-3.jpeg'
@@ -20,18 +14,37 @@ import gallery7 from './assets/Our Work — Miami Organizers/IMG_78851.jpg'
 
 const BOOK_URL = 'https://miamiorganizers.com/wp-content/uploads/2024/09/Organizing-for-a-better-lifestyle-by-Sherezade-Vacas-642x1024.png'
 
+const PHOTOS = import.meta.glob('./assets/photos/*/*.jpg', { eager: true, query: '?url', import: 'default' })
+const photo = (name) => {
+  const hit = Object.entries(PHOTOS).find(([path]) => path.endsWith(`/${name}.jpg`))
+  if (!hit) throw new Error(`Missing photo: ${name}`)
+  return hit[1]
+}
+const pick = (names) => names.map(photo)
+
 export const IMG = {
   logo,
-  hero,
-  cardHome,
-  cardOffice,
-  cardMove,
-  concierge,
-  portrait,
+  hero: photo('Shere_2026-132'),
+  cardHome: photo('Shere_2026-160'),
+  cardOffice: photo('Shere_2026-72'),
+  cardMove: photo('Shere-78'),
+  concierge: photo('Shere-100'),
+  portrait: photo('Shere_2026-97'),
   book: BOOK_URL,
 }
 
-export const GALLERY = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7]
+export const JOURNAL_IMAGES = pick(['Shere-86', 'Shere-91', 'Shere-99'])
+
+export const FEATURED = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7]
+export const GALLERY = [
+  ...pick([
+    'Shere_2026-132', 'Shere_2026-98', 'Shere_2026-113', 'Shere_2026-72', 'Shere_2026-160', 'Shere_2026-173',
+    'Shere_2026-175', 'Shere_2026-141', 'Shere_2026-122', 'Shere_2026-104', 'Shere_2026-189', 'Shere_2026-68',
+    'Shere_2026-44', 'Shere_2026-27', 'Shere_2026-1', 'Shere_2026-62',
+    'Shere-78', 'Shere-86', 'Shere-91', 'Shere-99', 'Shere-100', 'Shere-102', 'Shere-74', 'Shere-16', 'Shere-103', 'Shere-114',
+  ]),
+  ...FEATURED,
+]
 
 /* ============================================================
    LINKS
