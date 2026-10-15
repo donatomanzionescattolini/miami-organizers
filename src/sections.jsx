@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import {
-  IMG, GALLERY, LINKS, ROUTES, lines,
+  IMG, GALLERY, JOURNAL_IMAGES, LINKS, ROUTES, lines,
   useLang, useT, IgIcon, FbIcon, PhoneIcon, WhatsAppIcon,
 } from './content.jsx'
 import { useReveal } from './hooks.js'
@@ -262,7 +262,7 @@ export function Concierge() {
    ============================================================ */
 export function Gallery({ preview = false }) {
   const t = useT()
-  const items = preview ? GALLERY.slice(0, 6) : GALLERY
+  const items = preview ? GALLERY.slice(0, 9) : GALLERY
   const [lightbox, setLightbox] = useState(null)
 
   useEffect(() => {
@@ -581,7 +581,7 @@ export function Journal() {
       <div className="journal__grid">
         {t.journal.posts.map((post, i) => (
           <article className="journal__card" key={post.title}>
-            <img src={GALLERY[i]} alt={post.title} loading="lazy" />
+            <img src={JOURNAL_IMAGES[i]} alt={post.title} loading="lazy" />
             <div className="journal__body">
               <p className="eyebrow">{post.category}</p>
               <h3>{post.title}</h3>
