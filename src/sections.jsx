@@ -40,6 +40,7 @@ export function Nav() {
     [ROUTES.services, t.nav.services],
     [ROUTES.work, t.nav.work],
     [ROUTES.guides, t.nav.guides],
+    [ROUTES.journal, t.nav.journal],
     [ROUTES.about, t.nav.about],
     [ROUTES.contact, t.nav.contact],
   ]
@@ -190,6 +191,49 @@ export function Services({ preview = false }) {
           <ul className="specialties__list">{t.services.specialties.map((s) => <li key={s}>{s}</li>)}</ul>
         </div>
       )}
+    </Reveal>
+  )
+}
+
+export function CustomProjects() {
+  const t = useT()
+  return (
+    <Reveal className="section custom-projects" id="custom-projects">
+      <div className="section__head">
+        <p className="eyebrow">{t.custom.eyebrow}</p>
+        <h2 className="section__title">{lines(t.custom.title)}</h2>
+        <p className="section__intro">{t.custom.intro}</p>
+      </div>
+      <div className="custom-projects__grid">
+        {t.custom.needs.map((item, i) => (
+          <article className="custom-projects__card" key={item.title}>
+            <span className="custom-projects__no">0{i + 1}</span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </Reveal>
+  )
+}
+
+export function TradeBenefits() {
+  const t = useT()
+  return (
+    <Reveal className="trade" id="trade-benefits">
+      <div className="trade__inner">
+        <div className="trade__copy">
+          <p className="eyebrow">{t.trade.eyebrow}</p>
+          <h2 className="section__title">{lines(t.trade.title)}</h2>
+          <p className="section__intro">{t.trade.intro}</p>
+          <p className="trade__collaborator">{t.trade.collaborator}</p>
+        </div>
+        <div className="trade__resources">
+          <h3>{t.trade.partners}</h3>
+          <ul>{t.trade.brands.map((brand) => <li key={brand}>{brand}</li>)}</ul>
+          <p>{t.trade.affiliate}</p>
+        </div>
+      </div>
     </Reveal>
   )
 }
@@ -504,6 +548,52 @@ export function About() {
   )
 }
 
+export function Team() {
+  const t = useT()
+  return (
+    <Reveal className="section team" id="team">
+      <div className="section__head section__head--center">
+        <p className="eyebrow">{t.team.eyebrow}</p>
+        <h2 className="section__title">{lines(t.team.title)}</h2>
+      </div>
+      <div className="team__grid">
+        {t.team.members.map((member) => (
+          <article className="team__member" key={member.name}>
+            <h3>{member.name}</h3>
+            <p>{member.role}</p>
+          </article>
+        ))}
+      </div>
+      <p className="team__partner"><span>{t.team.partners}</span>{t.team.moving}</p>
+    </Reveal>
+  )
+}
+
+export function Journal() {
+  const t = useT()
+  return (
+    <Reveal className="section journal" id="journal">
+      <div className="section__head section__head--center">
+        <p className="eyebrow">{t.journal.eyebrow}</p>
+        <h2 className="section__title">{lines(t.journal.title)}</h2>
+        <p className="section__intro">{t.journal.intro}</p>
+      </div>
+      <div className="journal__grid">
+        {t.journal.posts.map((post, i) => (
+          <article className="journal__card" key={post.title}>
+            <img src={GALLERY[i]} alt={post.title} loading="lazy" />
+            <div className="journal__body">
+              <p className="eyebrow">{post.category}</p>
+              <h3>{post.title}</h3>
+              <p>{post.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </Reveal>
+  )
+}
+
 /* ============================================================
    CONTACT
    ============================================================ */
@@ -583,6 +673,7 @@ export function Footer() {
         <div className="footer__col">
           <h4>{t.footer.colMore}</h4>
           <Link to={ROUTES.guides}>{t.footer.l.guide}</Link>
+          <Link to={ROUTES.journal}>{t.nav.journal}</Link>
           <Link to={ROUTES.home}>{t.footer.l.reviews}</Link>
           <a href={LINKS.press} target="_blank" rel="noopener noreferrer">{t.footer.l.press}</a>
           <Link to={ROUTES.about}>{t.footer.l.about}</Link>
@@ -611,4 +702,3 @@ export function Fab() {
     </a>
   )
 }
-
