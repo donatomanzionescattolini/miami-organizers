@@ -5,8 +5,6 @@ import { createContext, useContext } from 'react'
    ============================================================ */
 import logo from './assets/Miami Organizers — Home & Office Organizing in South Florida/logo-Mo.jpg'
 import cardHome from './assets/Services — Miami Organizers/IMG_09051-768x1024.jpg'
-import cardOffice from './assets/Services — Miami Organizers/IMG_78821-768x1024.jpg'
-import cardMove from './assets/Services — Miami Organizers/IMG_14421-768x1024.jpg'
 import gallery1 from './assets/Our Work — Miami Organizers/Proyect-1-1.png'
 import gallery2 from './assets/Our Work — Miami Organizers/WhatsApp-Image-2023-07-25-at-10-12-08-AM-4.jpeg'
 import gallery3 from './assets/Our Work — Miami Organizers/WhatsApp-Image-2023-07-25-at-10-12-08-AM-3.jpeg'
@@ -29,8 +27,8 @@ export const IMG = {
   logo,
   hero: photo('Shere_2026-132'),
   cardHome,
-  cardOffice,
-  cardMove,
+  cardOffice: photo('Shere_2026-44'),
+  cardMove: photo('Shere_2026-27'),
   concierge: photo('Shere-100'),
   portrait: photo('Shere_2026-97'),
   book: BOOK_URL,
