@@ -1933,7 +1933,8 @@ button { font: inherit; }
 .journal__body h3 { margin-bottom: 0.75rem; }
 
 .hero .eyebrow--light,
-.video .eyebrow--light { color: var(--bronze); }
+.video .eyebrow--light,
+.book .eyebrow--light { color: var(--bronze); }
 
 .book .btn--outline-light {
   color: var(--espresso);

@@ -26,9 +26,14 @@ function ScrollToTop() {
 function usePageTitle(key) {
   const t = useT()
   useEffect(() => {
-    document.title = t.pageTitles[key]
-    const description = document.querySelector('meta[name="description"]')
-    if (description) description.content = t.pageDescriptions[key]
+    const title = t.pageTitles[key]
+    const description = t.pageDescriptions[key]
+    document.title = title
+    document.querySelector('meta[name="description"]')?.setAttribute('content', description)
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', title)
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', description)
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title)
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', description)
   }, [t, key])
 }
 
@@ -170,6 +175,5 @@ export default function App() {
     </LangCtx.Provider>
   )
 }
-
 
 
