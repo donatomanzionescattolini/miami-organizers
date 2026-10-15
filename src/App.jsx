@@ -6,6 +6,7 @@ import {
   Nav, Footer, Fab, PageHero,
   Hero, Strip, Services, Concierge, Gallery, Video, Mission,
   QuoteBand, Packages, Reviews, Products, Press, About, Contact, CtaBand,
+  CustomProjects, TradeBenefits, Team, Journal,
 } from './sections.jsx'
 
 /* detect initial language from the browser */
@@ -24,7 +25,16 @@ function ScrollToTop() {
 /* set <title> per page */
 function usePageTitle(key) {
   const t = useT()
-  useEffect(() => { document.title = t.pageTitles[key] }, [t, key])
+  useEffect(() => {
+    const title = t.pageTitles[key]
+    const description = t.pageDescriptions[key]
+    document.title = title
+    document.querySelector('meta[name="description"]')?.setAttribute('content', description)
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', title)
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', description)
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title)
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', description)
+  }, [t, key])
 }
 
 /* ============================================================
@@ -37,6 +47,8 @@ function HomePage() {
       <Hero />
       <Strip />
       <Services preview />
+      <CustomProjects />
+      <TradeBenefits />
       <Concierge />
       <Gallery preview />
       <Reviews />
@@ -52,7 +64,9 @@ function ServicesPage() {
     <>
       <PageHero eyebrow={t.nav.services} title={t.services.title} />
       <Services />
+      <CustomProjects />
       <Concierge />
+      <TradeBenefits />
       <Packages />
       <CtaBand />
     </>
@@ -81,6 +95,7 @@ function AboutPage() {
       <Mission />
       <QuoteBand />
       <About />
+      <Team />
       <Press />
       <CtaBand />
     </>
@@ -94,6 +109,18 @@ function GuidesPage() {
     <>
       <PageHero eyebrow={t.nav.guides} title={t.products.title} />
       <Products />
+      <CtaBand />
+    </>
+  )
+}
+
+function JournalPage() {
+  usePageTitle('journal')
+  const t = useT()
+  return (
+    <>
+      <PageHero eyebrow={t.journal.eyebrow} title={t.journal.title} />
+      <Journal />
       <CtaBand />
     </>
   )
@@ -139,6 +166,7 @@ export default function App() {
             <Route path={ROUTES.work} element={<WorkPage />} />
             <Route path={ROUTES.about} element={<AboutPage />} />
             <Route path={ROUTES.guides} element={<GuidesPage />} />
+            <Route path={ROUTES.journal} element={<JournalPage />} />
             <Route path={ROUTES.contact} element={<ContactPage />} />
             <Route path="*" element={<HomePage />} />
           </Route>
@@ -147,7 +175,5 @@ export default function App() {
     </LangCtx.Provider>
   )
 }
-
-
 
 

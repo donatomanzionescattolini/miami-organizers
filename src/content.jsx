@@ -51,7 +51,7 @@ export const LINKS = {
 }
 
 /* routes */
-export const ROUTES = { home: '/', services: '/services', work: '/work', about: '/about', guides: '/guides', contact: '/contact' }
+export const ROUTES = { home: '/', services: '/services', work: '/work', about: '/about', guides: '/guides', journal: '/journal', contact: '/contact' }
 
 /* ============================================================
    COPY — fully bilingual (English / Español)
@@ -65,9 +65,19 @@ export const T = {
       work: 'Our Work — Miami Organizers',
       about: 'About — Miami Organizers',
       guides: 'Digital Guides — Miami Organizers',
+      journal: 'The Journal — Miami Organizers',
       contact: 'Contact — Miami Organizers',
     },
-    nav: { home: 'Home', services: 'Services', work: 'Our Work', about: 'About', guides: 'Guides', contact: 'Contact', book: 'Get a quote', call: 'Call us' },
+    pageDescriptions: {
+      home: 'Bilingual home and office organizing, custom space design, moves and ongoing care across South Florida and Latin America. Call +1 (786) 882-7197.',
+      services: 'Explore custom home and office organizing, pantry restocking, garage systems, holiday decorating, corporate events and moving services in South Florida.',
+      work: 'See Miami Organizers projects and custom organizing systems designed around how each client lives and works.',
+      about: 'Meet the Miami Organizers team of professional organizers, interior design, business development and technology professionals.',
+      guides: 'Explore practical organizing guides and curated products from Miami Organizers.',
+      journal: 'Ideas for organizing family homes, Montessori spaces, closets, moves and everyday life from Miami Organizers.',
+      contact: 'Request a custom organizing quote from Miami Organizers. Serving South Florida and Latin America. Call +1 (786) 882-7197.',
+    },
+    nav: { home: 'Home', services: 'Services', work: 'Our Work', about: 'About', guides: 'Guides', journal: 'Journal', contact: 'Contact', book: 'Get a quote', call: 'Call us' },
     hero: {
       eyebrow: 'Miami · South Florida · Latin America',
       titleA: 'A home that',
@@ -83,15 +93,60 @@ export const T = {
     services: {
       eyebrow: '01 — What we do',
       title: 'Considered spaces,\nstart to finish.',
-      intro: "We're a team of professional organizers who turn cluttered, overwhelming spaces into functional, harmonious ones. We edit what no longer serves you, build systems that hold, and style the result so it's as beautiful as it is practical.",
+      intro: "We're a team of professional organizers who turn cluttered, overwhelming spaces into functional, harmonious ones. We edit what no longer serves you, build systems that hold, and style the result so it's as beautiful as it is practical. Every project includes a custom approach shaped around your household, routines and goals.",
       cards: [
         { t: 'Home Organizing', d: 'Kitchens, pantries, closets, garages and every room that quietly holds your household together — edited, systemized and restyled.' },
         { t: 'Office & Productivity', d: 'Residential and office systems: filing, storage, schedules and digital cleanup that maximize your time and resources.' },
         { t: 'Moves & Unpacks', d: 'Stress-free moving, renovation planning and full unpacks. Arrive to a home that already works from day one.' },
       ],
       specialtiesTitle: 'Specialized offerings',
-      specialties: ['Closet design', 'Wardrobe styling', 'Virtual organizing', 'Renovation planning', 'Stress-free moving', 'Storage solutions', 'Digital file organizing', 'Home & office'],
+      specialties: ['Closet design', 'Wardrobe styling', 'Virtual organizing', 'Renovation planning', 'Stress-free moving', 'Storage solutions', 'Digital file organizing', 'Home & office', 'Garage organizing', 'Holiday décor setup, takedown & organized storage', 'Home & office pantry and fridge restocking', 'Corporate event hosting'],
       more: 'Explore all services',
+    },
+    custom: {
+      eyebrow: 'Designed around you',
+      title: 'Every project is\ncustom by design.',
+      intro: 'There is no one-size-fits-all organizing system. We begin with your real routines, your space and what matters to you, then create a plan that fits.',
+      needs: [
+        { title: 'A growing family', text: 'A home with a baby needs different systems from a home where children are learning independence through Montessori-inspired spaces.' },
+        { title: 'A new chapter', text: 'Newlyweds setting up a home and a family navigating a separation each deserve thoughtful support for a very different transition.' },
+        { title: 'A home that has changed', text: 'When children move out and a parent is left with a large home and years of belongings, we help make decisions at a comfortable pace.' },
+        { title: 'A busy professional', text: 'For professionals, a tailored filing and document system can make important information easier to manage and find.' },
+      ],
+    },
+    trade: {
+      eyebrow: 'Design, sourcing & trade',
+      title: 'A thoughtful finish,\nwith trusted resources.',
+      intro: 'Our organizing and design recommendations are tailored to each project. Clients may also access special trade pricing across furniture, lighting, wallpaper, wall and flooring installations, and more.',
+      partners: 'Trade accounts and resources',
+      brands: ['The Container Store', 'Crate & Barrel', 'Williams-Sonoma', 'Artefacto'],
+      collaborator: 'We also work with Kobi Karp on design projects.',
+      affiliate: 'Our Amazon storefront is regularly updated with products selected for quality and value. As an Amazon Associate, we earn from qualifying purchases.',
+    },
+    team: {
+      eyebrow: 'The people behind the systems',
+      title: 'A thoughtful team,\nworking together.',
+      members: [
+        { name: 'Sherezade Vacas', role: 'Founder · Professional Organizer' },
+        { name: 'Diana Carolina', role: 'Professional Organizer' },
+        { name: 'Morena', role: 'Project Coordinator · Professional Organizer' },
+        { name: 'Daniela Pedrosa', role: 'Professional Organizer' },
+        { name: 'Natalie Manzione', role: 'Interior Designer' },
+        { name: 'Donato Manzione', role: 'Development' },
+        { name: 'Korvin Giron', role: 'Technology & Software Development' },
+      ],
+      partners: 'Moving partner',
+      moving: 'SFL Moving Company',
+    },
+    journal: {
+      eyebrow: 'The Miami Organizers Journal',
+      title: 'Ideas for living\nwith more ease.',
+      intro: 'Practical inspiration for the different spaces, routines and life changes that call for a personal approach.',
+      posts: [
+        { title: 'A closet that grows with your child', category: 'Family homes', text: 'Make everyday routines easier with accessible zones, simple labels and storage that can change as your child grows. Montessori-inspired organization starts with what your family actually uses.' },
+        { title: 'A calmer, more functional linen closet', category: 'Home organization', text: 'Group linens by room and purpose, keep frequently used items within reach and give each category a clear home. The best system is the one everyone in the household can maintain.' },
+        { title: 'A place for every pair: organizing shoes', category: 'Closets', text: 'Sort shoes by how often and where they are worn, then choose storage that fits the collection and the space. A visible, easy-to-reset system makes busy mornings smoother.' },
+      ],
     },
     concierge: {
       eyebrow: '02 — White-glove care',
@@ -200,9 +255,19 @@ export const T = {
       work: 'Proyectos — Miami Organizers',
       about: 'Nosotros — Miami Organizers',
       guides: 'Guías Digitales — Miami Organizers',
+      journal: 'Revista — Miami Organizers',
       contact: 'Contacto — Miami Organizers',
     },
-    nav: { home: 'Inicio', services: 'Servicios', work: 'Proyectos', about: 'Nosotros', guides: 'Guías', contact: 'Contacto', book: 'Cotiza gratis', call: 'Llámanos' },
+    pageDescriptions: {
+      home: 'Organización bilingüe de hogares y oficinas, diseño personalizado, mudanzas y mantenimiento en el sur de Florida y Latinoamérica. Llama al +1 (786) 882-7197.',
+      services: 'Explora organización personalizada para hogares y oficinas, despensas, garajes, decoración navideña, eventos corporativos y mudanzas en el sur de Florida.',
+      work: 'Conoce proyectos y sistemas de organización personalizados según la vida y las necesidades de cada cliente.',
+      about: 'Conoce al equipo de Miami Organizers: organizadoras profesionales, diseño de interiores, desarrollo de negocios y tecnología.',
+      guides: 'Explora guías prácticas de organización y productos recomendados por Miami Organizers.',
+      journal: 'Ideas para organizar hogares familiares, espacios Montessori, clósets, mudanzas y la vida diaria.',
+      contact: 'Solicita una cotización personalizada de Miami Organizers. Servicio en el sur de Florida y Latinoamérica. Llama al +1 (786) 882-7197.',
+    },
+    nav: { home: 'Inicio', services: 'Servicios', work: 'Proyectos', about: 'Nosotros', guides: 'Guías', journal: 'Revista', contact: 'Contacto', book: 'Cotiza gratis', call: 'Llámanos' },
     hero: {
       eyebrow: 'Miami · Sur de Florida · Latinoamérica',
       titleA: 'Un hogar que',
@@ -218,15 +283,60 @@ export const T = {
     services: {
       eyebrow: '01 — Lo que hacemos',
       title: 'Espacios pensados,\nde principio a fin.',
-      intro: 'Somos un equipo de organizadores profesionales que transforma espacios desordenados y abrumadores en lugares funcionales y armoniosos. Editamos lo que ya no te sirve, creamos sistemas que perduran y damos estilo al resultado para que sea tan bello como práctico.',
+      intro: 'Somos un equipo de organizadores profesionales que transforma espacios desordenados y abrumadores en lugares funcionales y armoniosos. Editamos lo que ya no te sirve, creamos sistemas que perduran y damos estilo al resultado para que sea tan bello como práctico. Cada proyecto se adapta a tu hogar, tus rutinas y tus metas.',
       cards: [
         { t: 'Organización del hogar', d: 'Cocinas, despensas, clósets, garajes y cada rincón que sostiene tu hogar — editados, sistematizados y con estilo.' },
         { t: 'Oficina y productividad', d: 'Sistemas para casa y oficina: archivos, almacenamiento, agendas y limpieza digital que maximizan tu tiempo y recursos.' },
         { t: 'Mudanzas y desempaque', d: 'Mudanzas sin estrés, planeación de remodelaciones y desempaque completo. Llega a un hogar que ya funciona desde el primer día.' },
       ],
       specialtiesTitle: 'Servicios especializados',
-      specialties: ['Diseño de clósets', 'Estilismo de guardarropa', 'Organización virtual', 'Planeación de remodelación', 'Mudanzas sin estrés', 'Soluciones de almacenaje', 'Organización de archivos', 'Hogar y oficina'],
+      specialties: ['Diseño de clósets', 'Estilismo de guardarropa', 'Organización virtual', 'Planeación de remodelación', 'Mudanzas sin estrés', 'Soluciones de almacenaje', 'Organización de archivos', 'Hogar y oficina', 'Organización de garajes', 'Decoración, desmontaje y guardado navideño', 'Reabastecimiento de despensa y refrigerador en hogares y oficinas', 'Eventos corporativos'],
       more: 'Explora todos los servicios',
+    },
+    custom: {
+      eyebrow: 'Diseñado para ti',
+      title: 'Cada proyecto\nes personalizado.',
+      intro: 'No existe un sistema de organización universal. Empezamos por tus rutinas, tu espacio y lo que es importante para ti, y creamos un plan que se adapta a tu vida.',
+      needs: [
+        { title: 'Una familia que crece', text: 'Un hogar con un bebé necesita sistemas distintos a uno donde los niños están aprendiendo independencia con espacios inspirados en Montessori.' },
+        { title: 'Una nueva etapa', text: 'Una pareja que empieza su hogar y una familia que atraviesa una separación merecen apoyo pensado para transiciones muy diferentes.' },
+        { title: 'Un hogar que ha cambiado', text: 'Cuando los hijos se mudan y un padre queda en una casa grande con años de pertenencias, ayudamos a tomar decisiones a un ritmo cómodo.' },
+        { title: 'Un profesional ocupado', text: 'Para profesionales, un sistema personalizado de archivos y documentos ayuda a encontrar y administrar la información importante.' },
+      ],
+    },
+    trade: {
+      eyebrow: 'Diseño, compras y beneficios',
+      title: 'Un acabado especial,\ncon recursos confiables.',
+      intro: 'Nuestras recomendaciones de organización y diseño se adaptan a cada proyecto. Además, los clientes pueden acceder a descuentos comerciales en muebles, iluminación, papel tapiz, instalaciones de paredes y pisos, y más.',
+      partners: 'Cuentas y recursos comerciales',
+      brands: ['The Container Store', 'Crate & Barrel', 'Williams-Sonoma', 'Artefacto'],
+      collaborator: 'También trabajamos con Kobi Karp en proyectos de diseño.',
+      affiliate: 'Actualizamos nuestra tienda de Amazon con productos seleccionados por su calidad y precio. Como afiliados de Amazon, ganamos por compras que califican.',
+    },
+    team: {
+      eyebrow: 'El equipo detrás de cada sistema',
+      title: 'Un equipo atento,\ntrabajando en conjunto.',
+      members: [
+        { name: 'Sherezade Vacas', role: 'Fundadora · Organizadora profesional' },
+        { name: 'Diana Carolina', role: 'Organizadora profesional' },
+        { name: 'Morena', role: 'Coordinadora de proyectos · Organizadora profesional' },
+        { name: 'Daniela Pedrosa', role: 'Organizadora profesional' },
+        { name: 'Natalie Manzione', role: 'Diseñadora de interiores' },
+        { name: 'Donato Manzione', role: 'Desarrollo' },
+        { name: 'Korvin Giron', role: 'Tecnología y desarrollo de software' },
+      ],
+      partners: 'Aliado de mudanzas',
+      moving: 'SFL Moving Company',
+    },
+    journal: {
+      eyebrow: 'La revista de Miami Organizers',
+      title: 'Ideas para vivir\ncon más tranquilidad.',
+      intro: 'Inspiración práctica para los espacios, las rutinas y los cambios de vida que merecen un enfoque personal.',
+      posts: [
+        { title: 'Un clóset que crece con tus hijos', category: 'Hogares familiares', text: 'Facilita las rutinas con zonas accesibles, etiquetas sencillas y almacenamiento adaptable. La organización inspirada en Montessori comienza con lo que tu familia realmente usa.' },
+        { title: 'Un armario de ropa blanca más funcional', category: 'Organización del hogar', text: 'Agrupa la ropa por habitación y uso, deja lo más frecuente al alcance y asigna un lugar claro a cada categoría. El mejor sistema es el que todos pueden mantener.' },
+        { title: 'Un lugar para cada par: organiza tus zapatos', category: 'Clósets', text: 'Clasifica los zapatos por frecuencia y ocasión, y elige un almacenamiento adecuado para tu colección y espacio. Un sistema visible y fácil de ordenar agiliza las mañanas.' },
+      ],
     },
     concierge: {
       eyebrow: '02 — Servicio premium',
@@ -362,4 +472,3 @@ export const WhatsAppIcon = () => (
     <path d="M.06 24l1.69-6.16A11.87 11.87 0 0 1 .15 11.9C.15 5.33 5.5 0 12.08 0a11.82 11.82 0 0 1 8.42 3.49 11.78 11.78 0 0 1 3.49 8.42c0 6.57-5.35 11.9-11.93 11.9a11.96 11.96 0 0 1-5.7-1.45L.06 24Zm6.6-3.8c1.68.99 3.28 1.59 5.42 1.59 5.46 0 9.9-4.43 9.9-9.88 0-5.46-4.44-9.9-9.9-9.9-5.46 0-9.9 4.44-9.9 9.9 0 2.24.66 3.92 1.76 5.68l-1 3.65 3.72-.04Zm11.39-5.55c-.07-.12-.27-.2-.56-.34-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.16-.17.2-.34.22-.64.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.91-2.19-.24-.57-.48-.5-.66-.5l-.56-.01c-.2 0-.5.07-.77.37-.27.3-1.02 1-1.02 2.43 0 1.43 1.04 2.82 1.19 3.01.15.2 2.05 3.13 4.97 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.55-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41Z"/>
   </svg>
 )
-
